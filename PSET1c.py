@@ -24,11 +24,9 @@ while True:
     rend_month = current_savings*r_per_month
     best_saving_rate = guess/10000
     month_save = month_salary*best_saving_rate
-    months = 0  
-    while months <= 36:
+    for months in range(0,37):
         current_savings += month_save + rend_month
         rend_month = current_savings*r_per_month
-        months += 1
         if months % 6 == 0:
             month_salary += month_salary*semi_annual_raise
             month_save = month_salary*best_saving_rate
