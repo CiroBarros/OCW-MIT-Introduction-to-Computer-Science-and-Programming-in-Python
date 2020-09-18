@@ -314,7 +314,10 @@ def hangman_with_hints(secret_word):
         print("You have", guesses, "guesses left.")
         warnings = 3
         while True:
-            guess = input("Enter your next guess: ")
+            if guess_cont:
+                guess = input("Enter your next guess or enter '*' to get a hint: ")
+            else:
+                guess = input("Enter your next guess: ")
             alphabet = string.ascii_letters
             if len(guess) == 1 and guess in alphabet:
                 guess_cont = True
@@ -348,7 +351,14 @@ def hangman_with_hints(secret_word):
                 print("Available letters:", available)
                 partial = get_guessed_word(secret_word,letters_guessed)
                 print("Partial word so far:", partial)
-                guess = input("Enter your next guess: ")
+                if guess_cont:
+                    guess = input("Enter your next guess or enter '*' to get a hint: ")
+                    if guess == "*":
+                        print("Possible word matches are:")
+                        show_possible_matches(partial)
+                        print()
+                else:
+                    guess = input("Enter your next guess: ")
             if warnings == 0:
                    print("Too bad! You ran out of warnings! You lost one guess!")
                    guesses -= 1
